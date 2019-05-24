@@ -15,7 +15,7 @@ void display(NODE *head)
     struct node *temp = head;
     while(temp != 0) 
     {
-        printf("%d=>", temp->data);
+        printf("%d=>", temp->num);
         temp = temp->link;
     }
     printf("NULL");
@@ -25,27 +25,36 @@ void display(NODE *head)
 //         0 if failure.
 int insertAtEnd(struct node **head, int position, int data)
 {
-	struct node *newnode, *last;
-    newnode = (struct node *)malloc(sizeof(struct node));
-
-    if(*head == NULL) 
+    NODE *new_node;
+    new_node = (NODE *)malloc(sizeof(struct node));
+    new_node->num = data;
+    if(position == 0) 
     {
-        if(position != 0) 
-        {
-            return 0;
-        } 
-        else 
-        {
-            head = last = newnode;
-            return 1;
-        }
-
-    } 
-    else 
-    {
-        
+        new_node->link = *head;
+        *head = new_node;
+        return 1;
     }
 
+    if (*head == NULL) 
+    {
+        return 0;
+    }
+
+    int i;
+    NODE *node = *head;
+    for(int i=1; i<=position; i++) 
+    {
+        if(node == NULL) 
+        {
+            return 0;
+        }
+        node = node->link;
+    }
+    NODE *temp;
+    temp = node->link;
+    node->link = new_node;
+    new_node->link = temp;
+    return 1;
 }
 
 int main()
