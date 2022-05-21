@@ -2,7 +2,7 @@
 
 My notes on Data Structures
 
-PS, I hate data structures. 
+P.S. I hate data structures. 
 
 ## Tips and Tricks
 
